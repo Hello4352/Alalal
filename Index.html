@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="ko">
+<!DOCTYPE html>
+<html lang="ko">
 <head>
   <meta charset="UTF-8" />
   <title>스팸 댓글 수집 프로젝트</title>
@@ -9,9 +10,7 @@
       background-color: #f9f9f9;
       line-height: 1.6;
     }
-    h1, h2, h3 {
-      color: #333;
-    }
+    h1, h2, h3 { color: #333; }
     .container {
       max-width: 800px;
       margin: auto;
@@ -38,9 +37,7 @@
       border-radius: 8px;
       cursor: pointer;
     }
-    button:hover {
-      background: #1e40af;
-    }
+    button:hover { background: #1e40af; }
     .definition {
       background: #f0f4f8;
       padding: 15px;
@@ -57,49 +54,70 @@
 <body>
   <div class="container">
     <h1>📌 스팸 댓글 수집 프로젝트</h1>
-    <p>이 페이지는 <strong>스팸 댓글 분류기 탐구 활동</strong>을 위해 댓글 데이터를 수집하는 공간입니다.<br>
-    학생들이 직접 작성한 <strong>정상 댓글</strong>과 <strong>스팸 댓글</strong>을 모아 학습용 빅데이터를 구축합니다.</p><h2>✏️ 댓글 입력 방법</h2>
-<ul>
-  <li><strong>정상 댓글 칸</strong>과 <strong>스팸 댓글 칸</strong>이 따로 있습니다.</li>
-  <li>각 칸에는 <strong>최대 3개의 댓글</strong>을 입력할 수 있습니다.</li>
-  <li>댓글은 반드시 <code>.</code> (마침표)로 구분합니다.</li>
-</ul>
-<p>예시: <code>오늘 수업이 유익했어요. 재미있었습니다. 다시 듣고 싶어요</code></p>
+    <p>
+      이 페이지는 <strong>스팸 댓글 분류기 탐구 활동</strong>을 위해 댓글 데이터를 수집하는 공간입니다.<br>
+      학생들이 직접 작성한 <strong>정상 댓글</strong>과 <strong>스팸 댓글</strong>을 모아 학습용 빅데이터를 구축합니다.
+    </p>
 
-<h2>🛑 스팸 댓글 정의</h2>
-<div class="definition">
-  <ol>
-    <li>욕설·비속어 포함</li>
-    <li>주제와 무관한 댓글 (예: 과학 영상에 스포츠 이야기)</li>
-    <li>동일 단어나 문장이 3회 이상 반복</li>
-    <li>기존 댓글과 완전히 동일 (띄어쓰기 포함)</li>
-    <li>링크를 과도하게 포함</li>
-    <li>특수문자·이모지를 과도하게 포함</li>
-    <li>홍보성 문구 포함 (예: "구독해주세요", "이 링크 클릭", "돈벌기")</li>
-    <li>문맥과 무관한 자동생성 패턴 (예: "ㄴㅇㄹㄴㅇㄹ", "asdfgh")</li>
-  </ol>
-</div>
+    <h2>✏️ 댓글 입력 방법</h2>
+    <ul>
+      <li><strong>정상 댓글 칸</strong>과 <strong>스팸 댓글 칸</strong>이 따로 있습니다.</li>
+      <li>각 칸에는 <strong>최대 3개의 댓글</strong>을 입력할 수 있습니다.</li>
+      <li>댓글은 반드시 <code>.</code> (마침표)로 구분합니다.</li>
+    </ul>
+    <p>예시: <code>오늘 수업이 유익했어요. 재미있었습니다. 다시 듣고 싶어요</code></p>
 
-<h2>📝 댓글 입력</h2>
-<form>
-  <label for="normal">✅ 정상 댓글 입력</label><br>
-  <textarea id="normal" placeholder="여기에 정상 댓글을 입력하세요 (최대 3개, . 으로 구분)"></textarea>
+    <h2>🛑 스팸 댓글 정의</h2>
+    <div class="definition">
+      <ol>
+        <li>욕설·비속어 포함</li>
+        <li>주제와 무관한 댓글 (예: 과학 영상에 스포츠 이야기)</li>
+        <li>동일 단어나 문장이 3회 이상 반복</li>
+        <li>기존 댓글과 완전히 동일 (띄어쓰기 포함)</li>
+        <li>링크를 과도하게 포함</li>
+        <li>특수문자·이모지를 과도하게 포함</li>
+        <li>홍보성 문구 포함 (예: "구독해주세요", "이 링크 클릭", "돈벌기")</li>
+        <li>문맥과 무관한 자동생성 패턴 (예: "ㄴㅇㄹㄴㅇㄹ", "asdfgh")</li>
+      </ol>
+    </div>
 
-  <label for="spam">🚫 스팸 댓글 입력</label><br>
-  <textarea id="spam" placeholder="여기에 스팸 댓글을 입력하세요 (최대 3개, . 으로 구분)"></textarea>
+    <h2>📝 댓글 입력</h2>
+    <form onsubmit="handleSubmit(event)">
+      <label for="normal">✅ 정상 댓글 입력</label><br>
+      <textarea id="normal" placeholder="여기에 정상 댓글을 입력하세요 (최대 3개, . 으로 구분)"></textarea>
 
-  <button type="submit">제출하기</button>
-</form>
+      <label for="spam">🚫 스팸 댓글 입력</label><br>
+      <textarea id="spam" placeholder="여기에 스팸 댓글을 입력하세요 (최대 3개, . 으로 구분)"></textarea>
 
-<h2>📂 데이터 저장</h2>
-<p>입력된 모든 댓글은 <strong>GitHub Repository</strong>에 저장되며,<br>
-<code>normal_comments.csv</code> 와 <code>spam_comments.csv</code> 파일로 관리됩니다.<br>
-관리자는 모든 데이터를 직접 확인할 수 있습니다.</p>
+      <button type="submit">제출하기</button>
+    </form>
 
-<h2>⚙️ 향후 활용</h2>
-<p>수집된 데이터는 전처리 후 <strong>머신러닝/딥러닝 모델 학습용</strong>으로 사용됩니다.<br>
-데이터셋과 분류기는 이 저장소에서 공개적으로 확인할 수 있습니다.</p>
+    <div id="result"></div>
 
+    <h2>📂 데이터 저장</h2>
+    <p>
+      입력된 모든 댓글은 <strong>GitHub Repository</strong>에 저장되며,<br>
+      <code>normal_comments.csv</code> 와 <code>spam_comments.csv</code> 파일로 관리됩니다.<br>
+      관리자는 모든 데이터를 직접 확인할 수 있습니다.
+    </p>
+
+    <h2>⚙️ 향후 활용</h2>
+    <p>
+      수집된 데이터는 전처리 후 <strong>머신러닝/딥러닝 모델 학습용</strong>으로 사용됩니다.<br>
+      데이터셋과 분류기는 이 저장소에서 공개적으로 확인할 수 있습니다.
+    </p>
   </div>
+
+  <script>
+    function handleSubmit(event) {
+      event.preventDefault();
+      const normal = document.getElementById('normal').value.trim();
+      const spam = document.getElementById('spam').value.trim();
+      document.getElementById('result').innerHTML =
+        `<p><strong>제출된 정상 댓글:</strong> ${normal || '없음'}</p>
+         <p><strong>제출된 스팸 댓글:</strong> ${spam || '없음'}</p>
+         <p style='color:red'>⚠️ 실제 저장은 GitHub 연동 코드 추가 필요</p>`;
+    }
+  </script>
 </body>
 </html>
